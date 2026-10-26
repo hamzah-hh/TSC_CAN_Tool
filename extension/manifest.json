@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "CAN",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Inline ghost-text autocomplete for follow-up notes. Works offline. Tab accepts.",
   "permissions": [
     "storage"
@@ -30,6 +30,7 @@
       ],
       "js": [
         "suggest.js",
+        "formatter.js",
         "content.js"
       ],
       "css": [
@@ -43,7 +44,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "model.json"
+        "model.json",
+        "formatting.json"
       ],
       "matches": [
         "https://*.leadsquared.com/*"

@@ -1,0 +1,242 @@
+[
+ {
+  "in": "cx hung up",
+  "out": "Customer hung up",
+  "lower": "customer hung up"
+ },
+ {
+  "in": "CX IS LOOKING AERO PLUS DESK // 1200 MM // OUT OF STOCK // CB AND INFORM",
+  "out": "Customer is looking AeroPlus desk // 1200 mm // Out of stock // Call back and inform",
+  "lower": "customer is looking aeroplus desk // 1200 mm // out of stock // call back and inform"
+ },
+ {
+  "in": "rnr",
+  "out": "Ringing, no response",
+  "lower": "ringing, no response"
+ },
+ {
+  "in": "ni as of nw",
+  "out": "Not interested as of now",
+  "lower": "not interested as of now"
+ },
+ {
+  "in": "sw off",
+  "out": "Switched off",
+  "lower": "switched off"
+ },
+ {
+  "in": "cust said she will visit andheri store tomm , i will cb",
+  "out": "Customer said she will visit Andheri store tomorrow, I will call back",
+  "lower": "customer said she will visit andheri store tomorrow , i will call back"
+ },
+ {
+  "in": "wa location shared, emi option told. hdfc card",
+  "out": "WhatsApp location shared, EMI option told. HDFC card",
+  "lower": "whatsapp location shared, emi option told. hdfc card"
+ },
+ {
+  "in": "already purchased from amazon by tsc",
+  "out": "Already purchased from Amazon by The Sleep Company",
+  "lower": "already purchased from amazon by the sleep company"
+ },
+ {
+  "in": "smart ortho grid/ 75x60x6\"/ features sahred/ will cnfrm cb",
+  "out": "Smart Ortho GRID/ 75x60x6\"/ Features shared/ Will confirm call back",
+  "lower": "smart ortho grid/ 75x60x6\"/ features shared/ will confirm call back"
+ },
+ {
+  "in": "i  will  call\nnext line cx",
+  "out": "I will call\nnext line customer",
+  "lower": "i  will  call\nnext line customer"
+ },
+ {
+  "in": "Customer Looking for AeroPlus Adjustable Desk | 1600 MM Call Back Set",
+  "out": "Customer Looking for AeroPlus Adjustable Desk | 1600 MM Call Back Set",
+  "lower": "customer looking for aeroplus adjustable desk | 1600 mm call back set"
+ },
+ {
+  "in": "",
+  "out": "",
+  "lower": ""
+ },
+ {
+  "in": "cm said will visit store n chk",
+  "out": "Customer said will visit store and check",
+  "lower": "customer said will visit store and check"
+ },
+ {
+  "in": "cx is looking for recliner sofa 1 seater rev he will visit store on sunday",
+  "out": "Customer is looking for recliner sofa 1 seater revolving he will visit store on Sunday",
+  "lower": "customer is looking for recliner sofa 1 seater revolving he will visit store on sunday"
+ },
+ {
+  "in": "rng",
+  "out": "Ringing",
+  "lower": "ringing"
+ },
+ {
+  "in": "vm",
+  "out": "Voice mail",
+  "lower": "voice mail"
+ },
+ {
+  "in": "bsy",
+  "out": "Busy",
+  "lower": "busy"
+ },
+ {
+  "in": "cx dsc",
+  "out": "Customer disconnected",
+  "lower": "customer disconnected"
+ },
+ {
+  "in": "dnp",
+  "out": "Did not pick",
+  "lower": "did not pick"
+ },
+ {
+  "in": "hup",
+  "out": "Hung up",
+  "lower": "hung up"
+ },
+ {
+  "in": "cx int in onyx chair, stylux also suggested",
+  "out": "Customer interested in Onyx chair, Stylux also suggested",
+  "lower": "customer interested in onyx chair, stylux also suggested"
+ },
+ {
+  "in": "ald conv",
+  "out": "Already converted",
+  "lower": "already converted"
+ },
+ {
+  "in": "apr from flipkart",
+  "out": "Already purchased from Flipkart",
+  "lower": "already purchased from flipkart"
+ },
+ {
+  "in": "matress size not cnfrm, cb on sat eve",
+  "out": "Mattress size not confirm, call back on Saturday evening",
+  "lower": "mattress size not confirm, call back on saturday evening"
+ },
+ {
+  "in": "customer wants xgen gaming chair. pls share dtls on wp",
+  "out": "Customer wants XGen gaming chair. Please share details on WhatsApp",
+  "lower": "customer wants xgen gaming chair. please share details on whatsapp"
+ },
+ {
+  "in": "tranquo massager chair price shared / cx will chk with family",
+  "out": "Tranquo massager chair price shared / Customer will check with family",
+  "lower": "tranquo massager chair price shared / customer will check with family"
+ },
+ {
+  "in": "temp out of service",
+  "out": "Temporarily out of service",
+  "lower": "temporarily out of service"
+ },
+ {
+  "in": "cx in meeting rn , cb later",
+  "out": "Customer in meeting right now, call back later",
+  "lower": "customer in meeting right now , call back later"
+ },
+ {
+  "in": "telugu lbr",
+  "out": "Telugu language barrier",
+  "lower": "telugu language barrier"
+ },
+ {
+  "in": "cx asked for snowtec comforter and smartgird pillow",
+  "out": "Customer asked for SnowTec comforter and SmartGRID pillow",
+  "lower": "customer asked for snowtec comforter and smartgrid pillow"
+ },
+ {
+  "in": "elev8 recliner bed with italia frame explained",
+  "out": "Elev8 recliner bed with Italia frame explained",
+  "lower": "elev8 recliner bed with italia frame explained"
+ },
+ {
+  "in": "no req as of now",
+  "out": "No requirement as of now",
+  "lower": "no requirement as of now"
+ },
+ {
+  "in": "after the call opening cx disconnected the call",
+  "out": "After the call opening customer disconnected the call",
+  "lower": "after the call opening customer disconnected the call"
+ },
+ {
+  "in": "voicemail",
+  "out": "Voice mail",
+  "lower": "voice mail"
+ },
+ {
+  "in": "RINGING",
+  "out": "Ringing",
+  "lower": "ringing"
+ },
+ {
+  "in": "Ringing/Busy",
+  "out": "Ringing/Busy",
+  "lower": "ringing/busy"
+ },
+ {
+  "in": "cx will visit whitefield store on saturday",
+  "out": "Customer will visit Whitefield store on Saturday",
+  "lower": "customer will visit whitefield store on saturday"
+ },
+ {
+  "in": "customer has purchased from wakefit",
+  "out": "Customer has purchased from Wakefit",
+  "lower": "customer has purchased from wakefit"
+ },
+ {
+  "in": "emi via bajaj finserv explained, cx ok with it",
+  "out": "EMI via Bajaj Finserv explained, customer OK with it",
+  "lower": "emi via bajaj finserv explained, customer ok with it"
+ },
+ {
+  "in": "ringing den busy",
+  "out": "Ringing then busy",
+  "lower": "ringing then busy"
+ },
+ {
+  "in": "hung uo",
+  "out": "Hung up",
+  "lower": "hung up"
+ },
+ {
+  "in": "cx sais he will chk on amazon and get back",
+  "out": "Customer says he will check on Amazon and get back",
+  "lower": "customer says he will check on amazon and get back"
+ },
+ {
+  "in": "cx is looking for mattress // 6x6 // 8 inch // budget 30k // cb tom",
+  "out": "Customer is looking for mattress // 6x6 // 8 inch // Budget 30k // Call back tomorrow",
+  "lower": "customer is looking for mattress // 6x6 // 8 inch // budget 30k // call back tomorrow"
+ },
+ {
+  "in": "cust busy in office, cb in eve",
+  "out": "Customer busy in office, call back in evening",
+  "lower": "customer busy in office, call back in evening"
+ },
+ {
+  "in": "sensai mattress enquiry",
+  "out": "SensAI mattress enquiry",
+  "lower": "sensai mattress enquiry"
+ },
+ {
+  "in": "aero sleek desk 1400 mm",
+  "out": "AeroSleek desk 1400 mm",
+  "lower": "aerosleek desk 1400 mm"
+ },
+ {
+  "in": "wavex foot massager price shared",
+  "out": "WaveX foot massager price shared",
+  "lower": "wavex foot massager price shared"
+ },
+ {
+  "in": "cx said not intrested",
+  "out": "Customer said not interested",
+  "lower": "customer said not interested"
+ }
+]

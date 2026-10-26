@@ -3,11 +3,11 @@ const m=require('../extension/model.json');
 let fail=0;
 function t(inp,check,label){const r=S.suggest(m,inp);const ok=check(r);if(!ok)fail++;console.log(ok?'PASS':'FAIL',JSON.stringify(inp),'->',JSON.stringify(r),label||'');}
 const eq=x=>r=>r===x, sw=x=>r=>r.startsWith(x);
-t('cb',eq(''));t('ring',eq('ing'));t('rin',eq('ging'));t('vo',eq('ice mail'));t('not int',eq('erested'));
+t('call back',eq(''),'(exact frequent phrase: quiet)');t('customer h',eq('ung up'));t('call bac',eq('k'));t('ring',eq('ing'));t('rin',eq('ging'));t('vo',eq('ice mail'));t('not int',eq('erested'));
 t('after the',eq(' call opening customer disconnected the call'));
 t('after the call op',sw('ening'));
-t('CX IS LOOK',r=>r&&r===r.toUpperCase());
-t('cx is looking for ',r=>r.length>0);
+t('CUSTOMER IS LOOK',r=>r&&r===r.toUpperCase());
+t('customer is looking for ',r=>r.length>0);
 t('',eq(''));t('zzzz',eq(''));t('   ',eq(''));
 t('ringing, vo',eq('ice mail'),'(after separator)');
 t('ringing.',eq(''));

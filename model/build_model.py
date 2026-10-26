@@ -3,6 +3,9 @@
 Usage:
   python build_model.py OUTPUT.json EXPORT1.csv [EXPORT2.csv ...]
 
+Notes are first passed through fmt.format_note(lower=True) with formatting.json,
+so the model holds full forms ("customer", "call back") and fixed typos.
+
 Each CSV is a LeadSquared activity export with a "Notes" column.
 
 Output: model.json with
@@ -46,11 +49,17 @@ def segments(note: str):
             yield seg
 
 
+import os as _os
+sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from fmt import load_rules, format_note
+RULES = load_rules(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "formatting.json"))
+
 df = pd.concat(
     pd.read_csv(f, usecols=["Notes"], dtype=str, keep_default_na=False) for f in SRCS
 )
 notes = df["Notes"].astype(str)
 notes = notes[notes.str.strip() != ""]
+notes = notes.map(lambda t: format_note(t, RULES, lower=True))
 print("notes", len(notes))
 
 seg_counts = Counter()
