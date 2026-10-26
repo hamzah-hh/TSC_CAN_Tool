@@ -71,7 +71,7 @@ let fails=0;const ok=(c,m)=>{console.log(c?'PASS':'FAIL',m);if(!c)fails++};
  ok(await val('#ta')==='cxx','Backspace only undoes as next key: '+JSON.stringify(await val('#ta')));
  await fresh('#ta','sw off, hello');await p.waitForTimeout(100);
  ok((await val('#ta'))==='Switched off, hello','two-word key + comma: '+JSON.stringify(await val('#ta')));
- await fresh('#ta2','ok\nrnr ');ok((await val('#ta2'))==='OK\nRinging, no response ','newline + capital: '+JSON.stringify(await val('#ta2')));
+ await fresh('#ta2','ok\nrnr ');ok((await val('#ta2'))==='OK\nRinging ','newline + capital: '+JSON.stringify(await val('#ta2')));
  // blur formats the whole note
  await fresh('#in','CX IS LOOKING AERO PLUS DESK');await p.click('#ta');await p.waitForTimeout(100);
  ok(await val('#in')==='Customer is looking AeroPlus desk','blur formats ALL CAPS: '+JSON.stringify(await val('#in')));

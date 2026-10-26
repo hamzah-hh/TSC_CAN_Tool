@@ -8,7 +8,7 @@
   "custmer": "customer",
   "cb": "call back",
   "cbk": "call back",
-  "rnr": "ringing, no response",
+  "rnr": "ringing",
   "rng": "ringing",
   "rngg": "ringing",
   "rnggg": "ringing",
@@ -92,7 +92,10 @@
   "mrng": "morning",
   "mrg": "morning",
   "vc": "video call",
-  "cd": "call disconnected"
+  "cd": "call disconnected",
+  "nr": "not reachable",
+  "rrr": "ringing",
+  "oos": "out of service"
  },
  "casing": {
   "emi": "EMI",

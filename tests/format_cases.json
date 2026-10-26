@@ -11,8 +11,8 @@
  },
  {
   "in": "rnr",
-  "out": "Ringing, no response",
-  "lower": "ringing, no response"
+  "out": "Ringing",
+  "lower": "ringing"
  },
  {
   "in": "ni as of nw",
@@ -238,5 +238,35 @@
   "in": "cx said not intrested",
   "out": "Customer said not interested",
   "lower": "customer said not interested"
+ },
+ {
+  "in": "vc",
+  "out": "Video call",
+  "lower": "video call"
+ },
+ {
+  "in": "cd",
+  "out": "Call disconnected",
+  "lower": "call disconnected"
+ },
+ {
+  "in": "nr",
+  "out": "Not reachable",
+  "lower": "not reachable"
+ },
+ {
+  "in": "RRR",
+  "out": "Ringing",
+  "lower": "ringing"
+ },
+ {
+  "in": "temp oos",
+  "out": "Temporarily out of service",
+  "lower": "temporarily out of service"
+ },
+ {
+  "in": "cx not reachable, rnr since morning",
+  "out": "Customer not reachable, ringing since morning",
+  "lower": "customer not reachable, ringing since morning"
  }
 ]
