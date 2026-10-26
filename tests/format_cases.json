@@ -46,7 +46,7 @@
  },
  {
   "in": "i  will  call\nnext line cx",
-  "out": "I will call\nnext line customer",
+  "out": "I will call\nNext line customer",
   "lower": "i  will  call\nnext line customer"
  },
  {
@@ -268,5 +268,10 @@
   "in": "cx not reachable, rnr since morning",
   "out": "Customer not reachable, ringing since morning",
   "lower": "customer not reachable, ringing since morning"
+ },
+ {
+  "in": "rnr\ncb tomm",
+  "out": "Ringing\nCall back tomorrow",
+  "lower": "ringing\ncall back tomorrow"
  }
 ]

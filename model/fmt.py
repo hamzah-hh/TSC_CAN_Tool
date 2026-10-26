@@ -93,7 +93,7 @@ def format_note(text, table, lower=False):
     def cap(m):
         return m.group(1) + m.group(2).upper()
 
-    text = re.sub(r"(^|[\n.?!]\s+|[/|]+\s*)([a-z])", cap, text)
+    text = re.sub(r"(^|\n\s*|[.?!]\s+|[/|]+\s*)([a-z])", cap, text)
     return text
 
 

@@ -90,7 +90,7 @@
     text = text.replace(/ +([,.?!])/g, '$1');
     text = text.replace(/,(?=[A-Za-z])/g, ', ');
     text = text.split('\n').map(function (l) { return l.trim(); }).join('\n');
-    text = text.replace(/(^|[\n.?!]\s+|[/|]+\s*)([a-z])/g, function (m, a, b) { return a + b.toUpperCase(); });
+    text = text.replace(/(^|\n\s*|[.?!]\s+|[/|]+\s*)([a-z])/g, function (m, a, b) { return a + b.toUpperCase(); });
     return text;
   }
 

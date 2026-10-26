@@ -270,11 +270,11 @@ let fails=0;const ok=(c,m)=>{console.log(c?'PASS':'FAIL',m);if(!c)fails++};
    // blur formats a plain field (both line styles)
    await clearField(pg,pg,'#f');await pg.keyboard.type('CX IS LOOKING AERO PLUS DESK');await pg.keyboard.press('Enter');await pg.keyboard.type('CB TOMM');
    await pg.click('#other');await wait(200);
-   ok(await fvalML(pg,'#f')==='Customer is looking AeroPlus desk\ncall back tomorrow',`g ce: blur formats whole note (div lines) -> ${JSON.stringify(await fvalML(pg,'#f'))}`);
+   ok(await fvalML(pg,'#f')==='Customer is looking AeroPlus desk\nCall back tomorrow',`g ce: blur formats whole note (div lines) -> ${JSON.stringify(await fvalML(pg,'#f'))}`);
    ok(await pg.evaluate(()=>document.activeElement.id)==='other','g ce: blur format did not steal focus');
    await clearField(pg,pg,'#f');await pg.keyboard.type('CX IS BUSY');await pg.keyboard.press('Shift+Enter');await pg.keyboard.type('CB TOMM');
    await pg.click('#other');await wait(200);
-   ok(await fvalML(pg,'#f')==='Customer is busy\ncall back tomorrow',`g ce: blur formats whole note (br lines) -> ${JSON.stringify(await fvalML(pg,'#f'))}`);
+   ok(await fvalML(pg,'#f')==='Customer is busy\nCall back tomorrow',`g ce: blur formats whole note (br lines) -> ${JSON.stringify(await fvalML(pg,'#f'))}`);
    ok(await pg.evaluate(()=>!!document.querySelector('#f br')&&!document.querySelector('#f div')),'g ce: br structure kept');
    await pg.close(); }
  { const pg=await open(`${O1}/popup.html?case=cerich`);
