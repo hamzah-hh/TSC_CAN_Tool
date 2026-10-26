@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>CAN pop-up test scenes</title>
+<style>
+ body{margin:0;font:14px Arial,sans-serif;background:#eef1f5;color:#000;min-height:600px}
+ .fld{width:300px;height:80px;font:16px/1.4 Arial,sans-serif;padding:8px;border:1px solid #888;background:#fff;color:#000;box-sizing:border-box;display:block;margin:6px 0}
+ .ce{height:auto;min-height:80px;overflow:auto;white-space:normal}
+ .ce.pre{white-space:pre-wrap}
+ input.fld{height:36px}
+ .modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:99999;background:#fff;border:2px solid #345;padding:16px;
+   box-shadow:0 8px 40px rgba(0,0,0,.4);animation:pop .4s ease-out;width:360px}
+ .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:99998}
+ @keyframes pop{from{transform:translate(-50%,-46%) scale(.92);opacity:.4}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+ dialog{border:2px solid #345;padding:16px;width:360px}
+ iframe.in{border:0;width:340px;height:140px;display:block;background:#fff}
+ h3{margin:0 0 8px;font-size:15px}
+</style></head><body>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), kase = q.get('case') || 'plain';
+  window.state = { trap: 0, closed: false, cancel: 0 };
+  var B = document.body;
+  function h(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function trapFor(modal) {
+    var els = [].slice.call(modal.querySelectorAll('textarea,input,button'));
+    document.addEventListener('keydown', function (e) {
+      if (!modal.isConnected) return;
+      if (e.key === 'Tab') {
+        e.preventDefault(); state.trap++;
+        var i = els.indexOf(document.activeElement);
+        els[(i + 1) % els.length].focus();
+      } else if (e.key === 'Escape') { state.closed = true; modal.remove(); var b = document.querySelector('.backdrop'); if (b) b.remove(); }
+    }, true);
+  }
+  function modalWith(inner, z) {
+    B.appendChild(h('<div class="backdrop"></div>'));
+    var m = h('<div class="modal" role="dialog" aria-modal="true"><h3>Add follow up</h3>' + inner +
+      '<input class="fld" id="other" placeholder="other"><button id="ok">Save</button></div>');
+    if (z) m.style.zIndex = z;
+    B.appendChild(m); trapFor(m); return m;
+  }
+  var TA = '<textarea class="fld" id="f"></textarea>';
+  window.openModal = function (z) { return modalWith(TA, z); };
+
+  if (kase === 'plain') {
+    B.appendChild(h('<div style="padding:20px">' + TA + '<input class="fld" id="other"></div>'));
+  } else if (kase === 'modal') {
+    modalWith(TA);
+  } else if (kase === 'modalmax') {
+    B.appendChild(h('<div style="padding:20px"><textarea class="fld" id="warm"></textarea></div>'));
+  } else if (kase === 'dialog') {
+    var d = h('<dialog id="dlg"><h3>Add follow up</h3>' + TA + '<input class="fld" id="other"><button id="ok">Save</button></dialog>');
+    B.appendChild(d);
+    d.addEventListener('cancel', function () { state.cancel++; });
+    d.addEventListener('close', function () { state.closed = true; });
+    d.showModal();
+  } else if (kase === 'shadow') {
+    class NoteBox extends HTMLElement {
+      constructor() {
+        super();
+        var r = this.attachShadow({ mode: 'open' });
+        r.innerHTML = '<style>.fld{width:300px;height:80px;font:16px/1.4 Georgia,serif;padding:8px;border:1px solid #888;background:#fff;color:#000;box-sizing:border-box;display:block;margin:6px 0}' +
+          '.ce{height:auto;min-height:60px;white-space:pre-wrap}</style><textarea class="fld" id="f"></textarea>' +
+          '<div class="fld ce" id="ce" contenteditable="true"></div>';
+      }
+    }
+    customElements.define('note-box', NoteBox);
+    var m = modalWith('<note-box></note-box>');
+  } else if (kase === 'ce') {
+    B.appendChild(h('<div style="padding:20px"><div class="fld ce ' + (q.get('ws') === 'pre' ? 'pre' : '') + '" id="f" contenteditable="true"></div><input class="fld" id="other"></div>'));
+  } else if (kase === 'cerole') {
+    B.appendChild(h('<div style="padding:20px"><div class="fld ce pre" id="f" role="textbox" contenteditable="plaintext-only"></div><input class="fld" id="other"></div>'));
+  } else if (kase === 'cerich') {
+    B.appendChild(h('<div style="padding:20px"><div class="fld ce pre" id="f" contenteditable="true"><b>CX</b> IS</div><input class="fld" id="other"></div>'));
+  } else if (kase === 'cemodal') {
+    modalWith('<div class="fld ce pre" id="f" contenteditable="true"></div>');
+  } else if (kase === 'hostframe') {
+    var inner = '<iframe class="in" id="fr" src="' + q.get('src').replace(/"/g, '&quot;') + '"></iframe>';
+    B.appendChild(h('<div class="backdrop"></div>'));
+    B.appendChild(h('<div class="modal" role="dialog">' + '<h3>Add follow up</h3>' + inner + '</div>'));
+  } else if (kase === 'elig') {
+    B.appendChild(h('<div style="padding:20px">' +
+      '<input class="fld" id="phone-9876543210" name="cust-secret-name" type="email" value="SECRETVALUE-email">' +
+      '<textarea class="fld" id="ro" readonly>SECRETVALUE-ro</textarea>' +
+      '<input class="fld" id="cb" role="combobox" value="SECRETVALUE-cb">' +
+      '<input class="fld" id="al" aria-autocomplete="list" value="SECRETVALUE-al">' +
+      '<input class="fld" id="an" aria-autocomplete="none">' +
+      '<input class="fld" id="pw" type="password" value="SECRETVALUE-pw">' +
+      '<div class="fld ce" id="cef" contenteditable="false">SECRETVALUE-cef</div>' +
+      '<textarea class="fld" id="ok" name="customer-notes-5551234"></textarea></div>'));
+  } else if (kase === 'blank') {
+    B.appendChild(h('<div style="padding:20px">blank</div>'));
+  }
+})();
+</script></body></html>

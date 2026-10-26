@@ -24,6 +24,7 @@ Auto-format changes the note while the agent types. It uses the rules in `model/
 - The grey text shows the name casing (for example `rtGRID` after `sma`).
 - When the agent leaves the field, CAN formats the whole note. This fixes pasted text and ALL CAPS notes. CAN does this only if the agent changed the field.
 - The popup has a switch **Auto-format**. It is on by default.
+- In a contenteditable box with bold text, links or lists, CAN does not format the whole note when you leave the field. This keeps your formatting. CAN still formats words while you type.
 
 ### Change the rules
 
@@ -36,13 +37,38 @@ To find new typos in the exports, run `python model/gen_corrections.py model/for
 
 `model/fmt.py` is the reference formatter. `extension/formatter.js` must give the same result. `tests/format_cases.json` holds the test cases.
 
+## Pop-up forms
+
+LeadSquared shows some forms as a pop-up. CAN works in these pop-up types:
+
+- A modal window on the page. CAN takes **Tab** and **Esc** first, so the focus trap of the modal does not move the focus.
+- A `<dialog>` element opened with `showModal()`. The ghost text goes inside the dialog, so it shows above the dialog.
+- A frame (`iframe`) from another domain, and `about:blank`, `srcdoc` and `blob:` frames.
+- A field inside an open shadow root.
+- A contenteditable notes box.
+- A pop-up browser window (`window.open`).
+
+When no ghost text shows, **Tab** and **Esc** work as usual in the form.
+
+### Domains
+
+The content script runs on `*.leadsquared.com`, `*.leadsquaredcdn.com` and `*.lsqportal.com`. LeadSquared can load pop-up forms from the last two domains. A frame guard in `content.js` keeps CAN off a page on these two domains when you open it alone. CAN starts there only when a `leadsquared.com` page holds the page in a frame, or opened it as a pop-up window. The guard list is the constant `GUARD_DOMAINS` in `extension/content.js`.
+
+### Last field
+
+Click in a notes box. Click the CAN icon. The section **Last field** shows what CAN saw: the field type, the frame domain, the pages above the frame, shadow DOM yes/no, dialog yes/no, and if CAN can work in the field. When it cannot, the section shows the reason.
+
+The record has no typed text, no field value, no field name and no field id. CAN saves it in `chrome.storage.local` with the key `lastField`.
+
+If CAN does not work in a form, ask the agent to send a screenshot of the section **Last field**. For more detail, turn on **Debug log** in the popup. CAN then writes the same record to the browser console with the prefix `[CAN]`.
+
 ## Folders
 
 | Folder | Content |
 |---|---|
 | `extension/` | The Chrome extension (Manifest V3). Load this folder in Chrome. |
 | `model/` | `build_model.py` makes `model.json` from LeadSquared activity exports. `formatting.json` holds the auto-format rules. `fmt.py` is the reference formatter. `gen_corrections.py` finds typos. |
-| `tests/` | Unit tests for suggestions and auto-format, and a browser test (Playwright). |
+| `tests/` | Unit tests for suggestions and auto-format, and a browser test (Playwright). The browser test also checks the pop-up types, `tests/popup.html` is the test page for them. |
 
 ## Install
 
@@ -83,7 +109,7 @@ node tests/browser.test.js     # needs Playwright and Chromium
 
 ## Limits
 
-- CAN works in plain text areas and text boxes. It does not work in rich-text editors (contenteditable).
+- CAN works in text areas, text boxes and contenteditable boxes. It does not work in password fields, read-only fields, fields with their own drop-down list, or closed shadow roots.
 - CAN shows a suggestion only when the cursor is at the end of the text.
 - Auto-format works at word ends. It does not change a word that the agent does not finish with a boundary character, except when the field loses focus.
 - A word typed in ALL CAPS gets the full form in capitals (`CX ` becomes `CUSTOMER `). The whole note gets normal letters when the field loses focus.

@@ -22,6 +22,7 @@ Auto-format fixes your note while you type.
 - Press **Backspace** right after a change. CAN brings back what you typed. CAN does not change that word again in the same field.
 - Press **Ctrl+Z** to undo a change in the usual way.
 - When you leave the field, CAN formats the whole note. This also fixes pasted text and notes in ALL CAPS.
+- In a contenteditable box with bold text, links or lists, CAN does not format the whole note when you leave the field. This keeps your formatting. CAN still formats words while you type.
 - To turn it off, click the CAN icon and use the switch **Auto-format**.
 
 To change the rules, see the top `README.md`.
@@ -63,18 +64,77 @@ You can also send the zip file to agents. They then use the steps in "Install on
 
 ## Where CAN works
 
-CAN works in text areas and text boxes on `*.leadsquared.com`, also in frames.
+CAN works in these fields:
 
-CAN does not work in rich-text editors (contenteditable), password fields, or fields that have their own drop-down list.
+- Text boxes and text areas.
+- Contenteditable boxes (some rich-text editors use them). Press **Tab** to accept, as in a text area.
+- Fields inside a shadow root (web components). The shadow root must be open.
+
+CAN works in these forms:
+
+- Normal LeadSquared pages.
+- Pop-up forms that show on top of the page (modal windows, `<dialog>` elements, pop-overs).
+- Forms in frames (`iframe`). This includes frames from another domain, and `about:blank`, `srcdoc` and `blob:` frames.
+- Pop-up browser windows that LeadSquared opens (`window.open`).
+
+CAN does not work in:
+
+- Password fields, e-mail fields, number fields and other special field types.
+- Read-only and disabled fields.
+- Fields with their own drop-down list (`role="combobox"` or `aria-autocomplete="list"`).
+- Fields inside a closed shadow root. The page hides these fields from CAN.
+
+When a ghost text shows, **Tab** and **Esc** go to CAN only. A pop-up form does not see these keys. The form does not close and the focus does not move. When no ghost text shows, **Tab** and **Esc** work as usual in the form.
+
+## Domains and why
+
+CAN runs on these domains:
+
+| Domain | Why |
+|---|---|
+| `*.leadsquared.com` | The LeadSquared application. |
+| `*.leadsquaredcdn.com` | LeadSquared can load pop-up forms from this domain. |
+| `*.lsqportal.com` | LeadSquared can load pop-up forms from this domain. |
+
+CAN does not run on `<all_urls>`.
+
+A page on `leadsquaredcdn.com` or `lsqportal.com` that you open alone is not LeadSquared. It can be a customer portal. CAN stays off there. CAN starts on these two domains only when the page is inside LeadSquared. This means:
+
+- The page is in a frame of a `leadsquared.com` page, or
+- a `leadsquared.com` page opened the page as a pop-up window.
+
+## If CAN does not work in a form
+
+1. Click in the notes box.
+2. Click the CAN icon.
+3. Read the section **Last field**. It shows what CAN saw when you clicked:
+   - **CAN can work here**: `yes` or `no`. When it is `no`, the line **Reason** tells why.
+   - **Field**: text box, text area or editable box.
+   - **Frame**: the domain of the frame, and if the field is in the main page or in a frame.
+   - **Pages above**: the pages that hold the frame.
+   - **In shadow DOM** and **In dialog**: `yes` or `no`.
+4. Take a screenshot of the section **Last field**. Send it to the CAN owner.
+
+**Last field** never shows what you typed. It does not show the field value, the field name or the field id. The record stays on your computer.
+
+If you need more detail, do these steps:
+
+1. Click the CAN icon. Turn on **Debug log**.
+2. Press F12. Open the **Console**.
+3. Click in the notes box. Find the lines that start with `[CAN]`.
+4. Send a screenshot of these lines.
+5. Turn off **Debug log** when you finish.
+
+If the reason is `frame not inside LeadSquared`, the form is on a page that CAN does not trust. Send the screenshot. The owner can add the domain.
 
 ## Files
 
 - `manifest.json` - extension settings. Permission: `storage` only.
 - `suggest.js` - the suggestion code.
 - `formatter.js` - the auto-format code.
-- `content.js`, `content.css` - the ghost text on the page.
+- `content.js`, `content.css` - the ghost text on the page, the frame check and the **Last field** record.
 - `background.js` - reads `model.json` and `formatting.json` when the page blocks direct reads.
-- `popup.html`, `popup.js` - the on/off switches.
+- `popup.html`, `popup.js` - the on/off switches, the **Last field** section and the **Debug log** box.
 - `model.json` - the local data for suggestions.
 - `formatting.json` - the local rules for auto-format.
 - `icons/` - icons.
@@ -84,4 +144,5 @@ CAN does not work in rich-text editors (contenteditable), password fields, or fi
 - CAN makes no network requests.
 - CAN does not save typed text.
 - CAN has no analytics.
-- CAN saves only two settings: CAN on or off, and auto-format on or off.
+- CAN saves three settings: CAN on or off, auto-format on or off, and debug log on or off.
+- CAN saves one record of the last field you clicked (**Last field**). The record has the field type, the frame domain and yes/no values. It has no text from the field. It stays in the browser of the agent.
