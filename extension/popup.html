@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>CAN</title>
+<style>
+ body{margin:0;width:260px;font:13px/1.45 system-ui,Segoe UI,Arial,sans-serif;color:#202124;background:#fff}
+ .wrap{padding:14px 16px}
+ .row{display:flex;align-items:center;justify-content:space-between}
+ h1{font-size:16px;margin:0}
+ .hint{margin:10px 0;color:#5f6368}
+ .stats{color:#5f6368;font-size:12px;border-top:1px solid #e8eaed;padding-top:8px}
+ .sw{position:relative;width:40px;height:22px}
+ .sw input{opacity:0;width:0;height:0}
+ .sl{position:absolute;inset:0;background:#bdc1c6;border-radius:22px;cursor:pointer;transition:.15s}
+ .sl:before{content:"";position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.15s}
+ input:checked+.sl{background:#1a73e8}
+ input:checked+.sl:before{transform:translateX(18px)}
+ input:focus-visible+.sl{outline:2px solid #1a73e8;outline-offset:2px}
+</style></head><body><div class="wrap">
+ <div class="row"><h1>CAN</h1>
+  <label class="sw"><input type="checkbox" id="on" aria-label="Turn CAN on or off"><span class="sl"></span></label></div>
+ <p class="hint" id="state">On</p>
+ <p class="hint">Tab = accept, Esc = dismiss, Ctrl+&rarr; = one word</p>
+ <div class="stats" id="stats">Model: loading...</div>
+</div><script src="popup.js"></script></body></html>

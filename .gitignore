@@ -1,0 +1,9 @@
+# Raw CRM exports and intermediate data — never commit
+*.csv
+*.zip
+*.pkl
+tests/screens/
+node_modules/
+__pycache__/
+*.pem
+*.crx

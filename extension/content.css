@@ -1,0 +1,19 @@
+#can-ghost-overlay {
+  position: fixed;
+  left: 0; top: 0;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none !important;
+  z-index: 2147483647;
+  background: transparent !important;
+  color: transparent !important;
+  border-style: solid;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  display: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+#can-ghost-overlay .can-t { color: transparent !important; }
+#can-ghost-overlay .can-g { color: #9aa0a6 !important; opacity: 0.85; }
